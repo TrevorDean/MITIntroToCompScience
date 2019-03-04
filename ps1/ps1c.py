@@ -1,19 +1,19 @@
 # Program to calculate the savings rate each month to be able to afford
 # a down payment in 3 years
 annual_salary = float(input("Enter your annual salary: "))
-portion_saved = 10000 # Percent of salary to save each month expressed as integer but reresenting
-                      # ten thousandths of a percent
+savings_rate_as_decimal = 10000  # Percent of salary to save each month expressed as integer but reresenting
+                       # ten thousandths of a percent
 total_cost = 1000000
 semi_annual_raise = .07
 portion_down_payment = total_cost * 0.25
 current_savings = 0
-r = 0.04
+r = 0.04  # Annual return on savings that have been invested
 months = 0
 monthly_salary = annual_salary / 12
-high = portion_saved
+high = savings_rate_as_decimal
 low = 0
 after36_savings = 0
-guess_percent = (high + low) / 2
+savings_rate_guess_integer = (high + low) / 2
 steps = 0
 
 def amount_saved(months, current_savings, portion_saved, monthly_salary):
@@ -27,20 +27,18 @@ def amount_saved(months, current_savings, portion_saved, monthly_salary):
 
 while after36_savings > 250100 or after36_savings < 249900:
     steps += 1
-    portion_saved = .0001 * guess_percent
-    after36_savings = amount_saved(months, current_savings, portion_saved, monthly_salary)
+    savings_rate_as_decimal = .0001 * savings_rate_guess_integer
+    after36_savings = amount_saved(months, current_savings, savings_rate_as_decimal, monthly_salary)
     if 250100 >= after36_savings >= 249900:
-        print("Best savings rate:", round(guess_percent * .0001, 4))
+        print("Best savings rate:", round(savings_rate_guess_integer * .0001, 4))
         print("Steps in bisection search:", steps)
     if after36_savings > 250100:
-        high = guess_percent
+        high = savings_rate_guess_integer
     else:
-        low = guess_percent
+        low = savings_rate_guess_integer
 
     if low == 10000:
         print("It is not possible to pay the down payment in three years.")
         print("steps:", steps)
         break
-    guess_percent = (high + low) / 2
-
-
+    savings_rate_guess_integer = (high + low) / 2
