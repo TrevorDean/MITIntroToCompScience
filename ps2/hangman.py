@@ -127,6 +127,7 @@ def hangman(secret_word):
         print('You have {} guesses left'.format(guesses))
         print('Available letters: {}'.format(get_available_letters(
             letters_guessed)))
+        letter_guessed = input('Please guess a letter: ')
         guesses -= 1
         print('-------------')
 
