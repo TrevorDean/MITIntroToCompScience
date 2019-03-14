@@ -105,6 +105,14 @@ def get_available_letters(letters_guessed):
 
 
 def letter_input():
+    '''
+    returns: A boolean, True if the guess was a letter and False if the guess
+    was not a letter and you have 0 warnings left
+    The function checks your input for characters other than letters a-z.
+    It also checks if the letter has been inputted before.
+    It has a 3 warning system.
+    '''
+
     global guess_a_letter
     global warnings_remaining
     guess_a_letter = input('Please guess a letter: ')
@@ -140,6 +148,8 @@ def hangman(secret_word):
     '''
     secret_word: string, the secret word to guess.
     Starts up an interactive game of Hangman.
+    This function controls the win condition, loss condition
+    and number of guesses remaining
     '''
     global letters_guessed
     letters_guessed = []
