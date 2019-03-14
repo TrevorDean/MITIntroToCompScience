@@ -16,7 +16,6 @@ WORDLIST_FILENAME = "words.txt"
 warnings = 3
 secret_word = 'apple'  # Remove this when done testing!!!
 
-
 def load_words():
     """
     Returns a list of valid words. Words are strings of lowercase letters.
@@ -108,19 +107,15 @@ def letter_input():
     global guess_a_letter
     global warnings
     guess_a_letter = input('Please guess a letter: ')
-    #print('guess a letter input = ', guess_a_letter)
-    if not str.isalpha(guess_a_letter) and warnings > -1:
-        if not str.isalpha(guess_a_letter) and warnings == 0:
-            print('''Oops! That is not a valid letter and you have no warnings left
-                so you lose one guess: ''', get_guessed_word(secret_word, letters_guessed))
-            return False
+    if not str.isalpha(guess_a_letter) and warnings > 0:
+        warnings -= 1
         print('''Oops! That is not a valid letter. You have {} warnings left:
             '''.format(warnings), get_guessed_word(secret_word, letters_guessed))
-        warnings -= 1
         letter_input()
-    else:
-        return True
-
+    if not str.isalpha(guess_a_letter) and warnings == 0:
+        print('''Oops! That is not a valid letter and you have 00 warnings left
+              so you lose one guess: ''', get_guessed_word(secret_word, letters_guessed))
+        return False
 
 def hangman(secret_word):
     '''
@@ -139,16 +134,16 @@ def hangman(secret_word):
         print('You have {} guesses left'.format(guesses))
         print('Available letters: {}'.format(get_available_letters(
                                              letters_guessed)))
-        good_guess = letter_input()
-        print('good guess: ', good_guess)
+        letter_input()
         letters_guessed.append(guess_a_letter)
+
         if is_word_guessed(secret_word, letters_guessed):
             print('Congratulations, you won!')
             break
         if guess_a_letter in secret_word:
             print('Good Guess: ', get_guessed_word(
                   secret_word, letters_guessed))
-        if guess_a_letter not in secret_word and good_guess:
+        else:
             print('Oops! That letter is not in my word: ', get_guessed_word(
                   secret_word, letters_guessed))
 
@@ -234,7 +229,7 @@ if __name__ == "__main__":
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
 
-    # secret_word = choose_word(wordlist)
+#    secret_word = choose_word(wordlist)
     hangman(secret_word)
 
 ###############
