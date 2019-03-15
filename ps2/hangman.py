@@ -185,12 +185,6 @@ def hangman(secret_word):
         print('---------------------------------------')
 
 
-# When you've completed your hangman function, scroll down to the bottom
-# of the file and uncomment the first two lines to test
-# (hint: you might want to pick your own
-# secret_word while you're doing your own testing)
-
-
 def match_with_gaps(my_word, other_word):
     '''
     my_word: string with _ characters, current guess of secret word
@@ -200,8 +194,14 @@ def match_with_gaps(my_word, other_word):
         symbol _ , and my_word and other_word are of the same length;
         False otherwise:
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    if len(my_word) != len(other_word):
+        return False
+    for letter in my_word:
+        if letter in other_word or letter == '_':
+            continue
+        else:
+            return False
+    return True
 
 
 def show_possible_matches(my_word):
@@ -263,7 +263,7 @@ if __name__ == "__main__":
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
 
-    #secret_word = choose_word(wordlist)
+    # secret_word = choose_word(wordlist)
     hangman(secret_word)
 
 ###############
