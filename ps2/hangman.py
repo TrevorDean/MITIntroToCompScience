@@ -214,8 +214,9 @@ def show_possible_matches(my_word):
              that has already been revealed.
 
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    for word in wordlist:
+        if match_with_gaps(my_word, word):
+            print(word)
 
 
 def hangman_with_hints(secret_word):
@@ -256,15 +257,18 @@ def hangman_with_hints(secret_word):
 # these two lines and run this file to test!
 # Hint: You might want to pick your own secret_word while you're testing.
 
+show_possible_matches('t__t')
 
 if __name__ == "__main__":
-    # pass
+    pass
 
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
 
     # secret_word = choose_word(wordlist)
-    hangman(secret_word)
+  #  hangman(secret_word)
+
+
 
 ###############
 
