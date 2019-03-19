@@ -1,0 +1,11 @@
+def letter_input(warnings_remaining=3):
+if warnings_remaining == 0:
+     print(" No more warnings remaining, you lose a guess")
+     return False
+# Get input stuff here
+if not str.isalpha(guess_a_letter):
+    print("not a letter")
+    return letter_input(warnings_remaining-1)
+if guessed_before():
+    print("already guessed")
+    return letter_input(warnings_remaining-1)

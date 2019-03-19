@@ -196,9 +196,10 @@ def match_with_gaps(my_word, other_word):
     '''
     if len(my_word) != len(other_word):
         return False
+    counter = 0
     for letter in my_word:
-        if letter in other_word or letter == '_':
-            continue
+        if letter == other_word[counter] or letter == '_':
+            counter += 1
         else:
             return False
     return True
@@ -214,6 +215,8 @@ def show_possible_matches(my_word):
              that has already been revealed.
 
     '''
+    # Removing white space
+    my_word = ''.join(my_word.split())
     for word in wordlist:
         if match_with_gaps(my_word, word):
             print(word)
@@ -257,7 +260,7 @@ def hangman_with_hints(secret_word):
 # these two lines and run this file to test!
 # Hint: You might want to pick your own secret_word while you're testing.
 
-show_possible_matches('t__t')
+show_possible_matches('a_ _ l_')
 
 if __name__ == "__main__":
     pass
@@ -266,7 +269,7 @@ if __name__ == "__main__":
     # uncomment the following two lines.
 
     # secret_word = choose_word(wordlist)
-  #  hangman(secret_word)
+    # hangman(secret_word)
 
 
 

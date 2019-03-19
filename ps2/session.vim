@@ -2,6 +2,7 @@ let SessionLoad = 1
 if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
+map  <Nop>
 vmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
@@ -10,6 +11,8 @@ let &cpo=s:cpo_save
 unlet s:cpo_save
 set background=dark
 set backspace=indent,eol,start
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
 set helplang=en
@@ -24,8 +27,11 @@ set runtimepath=~/.vim,~/vim/plugged/vim-airline/,~/vim/plugged/vim-airline-them
 set shiftround
 set shiftwidth=4
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+set noswapfile
 set tabstop=4
+set undodir=~/.vim/undo//
 set wildignore=*.pyc
+set nowritebackup
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -35,7 +41,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +2 main.py
-badd +123 hangman.py
+badd +1 hangman.py
 badd +22 test.py
 badd +9 hangmanlayout.txt
 argglobal
@@ -56,10 +62,10 @@ set nosplitright
 wincmd t
 set winheight=1 winwidth=1
 exe '1resize ' . ((&lines * 40 + 23) / 46)
-exe 'vert 1resize ' . ((&columns * 111 + 111) / 222)
+exe 'vert 1resize ' . ((&columns * 110 + 110) / 221)
 exe '2resize ' . ((&lines * 3 + 23) / 46)
-exe 'vert 2resize ' . ((&columns * 111 + 111) / 222)
-exe 'vert 3resize ' . ((&columns * 110 + 111) / 222)
+exe 'vert 2resize ' . ((&columns * 110 + 110) / 221)
+exe 'vert 3resize ' . ((&columns * 110 + 110) / 221)
 argglobal
 onoremap <buffer> C :call pymode#motion#select('^\s*class\s', 0)
 vnoremap <buffer> <silent> K :call pymode#doc#show(@*)
@@ -469,10 +475,10 @@ normal! zt
 normal! 030|
 wincmd w
 exe '1resize ' . ((&lines * 40 + 23) / 46)
-exe 'vert 1resize ' . ((&columns * 111 + 111) / 222)
+exe 'vert 1resize ' . ((&columns * 110 + 110) / 221)
 exe '2resize ' . ((&lines * 3 + 23) / 46)
-exe 'vert 2resize ' . ((&columns * 111 + 111) / 222)
-exe 'vert 3resize ' . ((&columns * 110 + 111) / 222)
+exe 'vert 2resize ' . ((&columns * 110 + 110) / 221)
+exe 'vert 3resize ' . ((&columns * 110 + 110) / 221)
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
