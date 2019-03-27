@@ -162,8 +162,7 @@ left so you lose one guess: ''',
         if guess_a_letter not in secret_word:
             print('Oops! That letter is not in my word: ', get_guessed_word(
                                   secret_word, letters_guessed))
-            if (guess_a_letter == 'a' or guess_a_letter == 'e' or guess_a_letter == 'i'
-                or guess_a_letter == 'o' or guess_a_letter == 'u'):
+            if guess_a_letter in 'aeiou':
                 guesses_remaining -= 2
             else:
                 guesses_remaining -= 1
