@@ -173,12 +173,7 @@ left so you lose one guess: ''',
             print('Congratulations, you won!')
 # Calculating Game Scoring, Total score = guesses_remaining * number of unique
 # letters in secret_word
-            number_of_uniques = 0
-            unique_string = ''
-            for letter in secret_word:
-                if letter not in unique_string:
-                    number_of_uniques += 1
-                    unique_string += letter
+            number_of_uniques = set(secret_word)
             total_score = number_of_uniques*guesses_remaining
             print('Your total score this game is: {}'.format(total_score))
             break
@@ -209,6 +204,7 @@ def match_with_gaps(my_word, other_word):
 
 def show_possible_matches(my_word):
     '''
+    Used to print out possible hint words for hangman_with_hints
     my_word: string with _ characters, current guess of secret word
     returns: nothing, but should print out every word in wordlist that matches
     my_word Keep in mind that in hangman when a letter is guessed, all the
