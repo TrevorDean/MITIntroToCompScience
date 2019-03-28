@@ -40,12 +40,6 @@ def choose_word(wordlist):
     return random.choice(wordlist)
 
 
-# end of helper code
-
-# -----------------------------------
-
-# Load the list of words into the variable wordlist
-# so that it can be accessed from anywhere in the program
 wordlist = load_words()
 
 
@@ -195,6 +189,9 @@ def match_with_gaps(my_word, other_word):
     counter = 0
     for letter in my_word:
         if letter == other_word[counter] or letter == '_':
+            if not letter == '_':
+                if my_word.count(letter) != other_word.count(letter):
+                    return False
             counter += 1
         else:
             return False
@@ -348,5 +345,5 @@ if __name__ == "__main__":
     # To test part 3 re-comment out the above lines and
     # uncomment the following two lines.
 
-    secret_word = 'apple' #choose_word(wordlist)
+    secret_word = choose_word(wordlist)
     hangman_with_hints(secret_word)
